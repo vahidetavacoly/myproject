@@ -1,0 +1,7 @@
+{{doctor.namefull}}
+<form method="post">
+    {% csrf_token %}
+    {{paint_form.as_p}}
+    {{apppoin_form.as_p}}
+    <button type="submit"></button>
+</form>

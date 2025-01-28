@@ -1,0 +1,98 @@
+<!-- filepath: /c:/Users/baharan/Desktop/moshaver/myproject/rezerv/templates/listnobatman.html -->
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+لیست نوبت‌های من
+{% endblock %}
+
+{% block user %}
+{% if user_st.state == True %}
+شما با نام کاربری
+{{ user_st.user }}
+در سایت هستید
+<a class="btn-btn-danger" href="/autoapp/logouts "> خروج </a>
+{% endif %}
+{% if user_st.state == False %}
+وارد حساب خود شوید
+{% endif %}
+{% endblock %}
+
+<head>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+
+{% block body %}
+{% include "navbar2.html"%}
+<link href="{% static 'Css/list.css' %}" rel="stylesheet" />
+
+<section class="container mt-5" id="online">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- جدول لیست نوبت‌ها -->
+            <div class="box p-md-4 p-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="wizard card-like m-3">
+                            <form action="#">
+                                <div class="wizard-header">
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <h5 class="IRANSansWeb_Medium mb-4">
+                                                لیست نوبت‌های من
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wizard-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>تاریخ</th>
+                                                    <th>زمان</th>
+                                                    <th>نوع نوبت</th>
+                                                    <th>وضعیت</th>
+                                                    <th>عملیات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for item in active_appointments %}
+                                                <tr>
+                                                    <td>{{ item.date }}</td>
+                                                    <td>{{ item.time }}</td>
+                                                    <td>{{ item.appointment_type }}</td>
+                                                    <td>{{ item.status }}</td>
+                                                {% comment %}
+                                                    <td>
+                                                        {% if item.appointment_type == 'online' %}
+                                                        <a href="{% url 'join_meeting' item.id %}" class="btn btn-primary">ورود به اتاق جلسه</a>
+                                                        {% endif %}
+                                                    </td>
+                                                {% endcomment %}
+                                                    <td>
+                                                        <form method="post" action="{% url 'start_meeting' item.id %}">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn btn-primary">شروع جلسه</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+    {{ form.media }}
+    <script src="{% static 'js/chat.js' %}"></script>
+{% endblock %}

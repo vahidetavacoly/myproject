@@ -1,0 +1,21 @@
+
+
+{{doctor.namefull}}
+<form method="post" action=""  >
+    {% csrf_token %}
+      {% for item in  form %}
+           <div class="form-group">
+                          {{ item.label_tag }}
+                          {{ item }}
+           </div>
+      {% endfor %}
+
+
+    
+
+     </div>
+<div class="text_center" >
+    <button type="submit"> مرحله بعد</button>
+
+</div>
+</form>

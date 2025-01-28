@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+
+<body>
+    <h1>لیست نوبت‌های شما</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>نام کاربر</th>
+                <th>تاریخ</th>
+                <th>نوع نوبت</th>
+                <th>وضعیت</th>
+                <th>مشاهده جزئیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.user.username }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.type }}</td>
+                <td>{{ appointment.status }}</td>
+                <td><a href="{% url 'shared_panel' appointment.id %}">مشاهده</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+{% endblock %}
+
+{% block script %}
+
+{{ form.media }}
+   <script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}
+
+
+
+
+<div class="row mt-4 p-4  mx-wh box">
+    <div class="col-md-12">
+        <h5 class="IRANSansWeb_Medium bg-light rad25 py-2 px-3 ">درباره مشاور</h5>
+        <p class="text-justify">
+            {{ info.biyografi }}
+         
+        </p>
+    </div>
+</div>
+
+<div id="Call" class="mt-4 p-4  mx-wh box text-md-right text-center">
+    <h5 class="IRANSansWeb_Medium  bg-light py-2 px-3  mb-4 rad25"> تماس تلفنی با مشاور (در کمترین زمان) </h5>
+
+    <div class="row">
+
+        <div class="col-lg-7">
+            <p>
+                با مشاور تا کمتر از 3 ساعت دیگر به صورت تلفنی گفتگو کنید! مشاور با شما تماس خواهد گرفت و حداکثر در 15 دقیقه پاسخگوی سوال شما خواهد بود. گوش به زنگ مشاور باشید.
+            </p>
+            <span class="dash-g p-2 rad25 mb-3">
+                <span class="pl-3"><i class="fas fa-check pl-1 text-success"></i>تماس تلفنی</span>
+                <span class="pl-3"><i class="fas fa-check pl-1 text-success"></i>ارسال متن</span>
+                <span class="pl-3"><i class="fas fa-check pl-1 text-success"></i>ارسال عکس</span>
+                <span class="pl-3"><i class="fas fa-check pl-1 text-success"></i>ارسال صوت</span>
+            </span>
+
+        </div>
+        <div class="col-lg-2 text-md-left text-center my-3">
+            <span class="IRANSansWeb_Light fa-2x">
+              
+            </span>
+        </div>
+        <div class="col-lg-3 text-md-left text-center">
+            <a href="Login.html" class="btn btn-danger px-4 text-white rad25  ml-3 "><i class="fas fa-phone mt-2"></i> شروع تماس</a>
+        </div>
+    </div>
+</div>
+
+
+<div id="Chat" class="mt-4 p-4  mx-wh box text-md-right text-center">
+    <h5 class="IRANSansWeb_Medium bg-light py-2 px-3  mb-4 rad25">گفتگوی متنی با مشاور</h5>
+    <div class="row">
+
+        <div class="col-lg-7">
+            <p>
+                با مشاور تا کمتر از 3 ساعت دیگر به صورت متنی گفتگو کنید! مشاور با شما چت خواهد کرد و حداکثر در 15 دقیقه پاسخگوی سوال شما خواهد بود. گوش به زنگ مشاور باشید.
+            </p>
+            <span class="dash-g p-2 rad25 mb-3">
+                <span class="pl-3"><i class="fas fa-times fa-2x text-danger pl-1 "></i>تماس تلفنی</span>
+                <span class="pl-3"><i class="fas fa-check pl-1 text-success"></i>ارسال متن</span>
+                <span class="pl-3"><i class="fas fa-check pl-1 text-success"></i>ارسال عکس</span>
+                <span class="pl-3"><i class="fas fa-check pl-1 text-success"></i>ارسال صوت</span>
+            </span>
+        </div>
+        <div class="col-lg-2 text-md-left text-center my-3">
+            <span class="IRANSansWeb_Light fa-2x">
+                {{ info.hazine }} تومان
+            </span>
+        </div>
+        <div class="col-lg-3 text-md-left text-center">
+            <a href="/message_d" class="btn btn-success px-4 text-white rad25  ml-3 "><i class="far fa-comment mt-2"></i>  شروع چـت </a>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,159 @@
+<!-- filepath: /c:/Users/baharan/Desktop/moshaver/myproject/app/templates/sabt_test.html -->
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+{% endblock %}
+
+{% block user %}
+{% if user_st.state == True %}
+شما با نام کاربری
+{{ user_st.user }}
+در سایت هستید
+<a class="btn-btn-dager" href=" /autoapp/logouts "> خروج </a>
+{% endif %}
+{% if user_st.state == False %}
+وارد حساب خود شوید
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row" dir="rtl">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header text-right">
+                <button type="button" class="btn btn-primary" onclick="creature()" data-toggle="modal" data-target="#myModal">
+                    افزودن تست
+                </button>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>متن</th>
+                            <th>نتیجه</th>
+                            <th>اعمال</th>
+                        </tr>
+                    </thead>
+                    <tbody class="body-tabel">
+                        {% for item in tabel %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.soal }}</td>
+                            <td>{{ item.result }}</td>
+                            <td>
+                                <button type="button" onclick="setdata('{{ item.name }}', '{{ item.soal }}', '{{ item.result }}', '{{ item.id }}')" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                    ویرایش
+                                </button>
+                                <button type="button" onclick="$('.id').val('{{ item.id }}')" class="btn btn-danger" data-toggle="modal" data-target="#myModaldelet">
+                                    حذف
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودال افزودن/ویرایش تست -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content" style="direction:rtl;">
+            <div class="modal-header">
+                <h4 class="modal-title">تست</h4>
+                <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-right">
+                <form id="testForm" method="post" action="" class="frm">
+                    {% csrf_token %}
+                    {% for item in form %}
+                    <div class="form-group">
+                        {{ item.label_tag }}
+                        {{ item }}
+                    </div>
+                    {% endfor %}
+                    <div class="alert alert-info result"></div>
+                    <div class="text_center">
+                        <button type="button" class="btn btn-info ml-2 savedata">ثبت</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودال حذف تست -->
+<div class="modal" id="myModaldelet">
+    <div class="modal-dialog">
+        <div class="modal-content" style="direction:rtl;">
+            <div class="modal-header">
+                <h4 class="modal-title">تاییدیه حذف</h4>
+                <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-right">
+                <form id="deleteForm" method="post" action="" class="frm-delet">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" class="id">
+                    ایا مایل به حذف هستید
+                    <div class="alert alert-info result-delet"></div>
+                    <div class="text_center">
+                        <button type="button" class="btn btn-info ml-2 ok_delet">بله</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/test.js' %}"></script>
+<script>
+    function setdata(name, soal, result, id) {
+        $('#id_name').val(name);
+        $('#id_soal').val(soal);
+        $('#id_result').val(result);
+        $('#id').val(id);
+        $('#testForm').attr('action', '{% url "update_test" 0 %}'.replace('0', id));
+    }
+
+    $(document).ready(function() {
+        $('.savedata').click(function() {
+            var form = $('#testForm');
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        $('.result').html(response.errors);
+                    }
+                }
+            });
+        });
+
+        $('.ok_delet').click(function() {
+            var form = $('#deleteForm');
+            $.ajax({
+                url: '{% url "delete_test" 0 %}'.replace('0', $('.id').val()),
+                type: 'POST',
+                data: form.serialize(),
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        $('.result-delet').html('خطایی رخ داده است.');
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

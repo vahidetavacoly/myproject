@@ -1,0 +1,43 @@
+<div>
+
+      
+       
+        
+  
+    <ul class="sina-menu sina-menu-center IRANSansWeb">
+       
+        <li class="float-lg-left">
+            {% for item in tabel2%}
+          <a href="/getp/{{item.id}}" class="btn btn-danger text-white rad25">پادکست  </a>
+
+          {% endfor %}
+        </li>
+        <li class="float-lg-left">
+         
+            {% for item in tabel5%}
+            <a href="/geta/{{item.id}}" class="btn btn-danger text-white rad25">تصاویر  </a>
+            {% endfor %}
+           
+        </li>
+        <li class="float-lg-left">
+               
+            {% for item in tabel3%}
+                <a href="/getv/{{item.id}}" class="btn btn-danger text-white rad25">ویدیو  </a>
+             
+           
+                {% endfor %}
+        </li>
+       
+        <li class="float-lg-left">
+            {% for item in tabel4%}  
+       
+            <a href="/gett/{{item.id}}" class="btn btn-danger text-white rad25">تست  </a>
+            {% endfor %} 
+          
+        </li>
+       
+      
+      
+    
+    </ul>
+</div>

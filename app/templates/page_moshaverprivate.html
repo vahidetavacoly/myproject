@@ -1,0 +1,220 @@
+<!-- filepath: /c:/Users/baharan/Desktop/moshaver/myproject/app/templates/page_moshaverprivate.html -->
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-dager" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<header class="nav-container">
+    <nav class="sina-nav mobile-sidebar navbar-fixed" data-top="60">
+        <div class="container">
+            <div class="extension-nav">
+                <ul class="pt-2">
+                </ul>
+            </div>
+            <div class="sina-nav-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="sina-brand pl-4" href="/Index">
+                    <img src="{%static 'Images/logo.png'%}" class="img-fluid" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="sina-menu sina-menu-center IRANSansWeb">
+                    <li><a href="/padcast_d">پادکست</a></li>
+                    <li><a href="/test_d">تست</a></li>
+                    <li><a href="/vidio_d">فیلم</a></li>
+                    <li><a href='consultant/appointments/'>لیست نوبت ها</a></li>
+                    <li><a href="/list_Faq">پرسش و پاسخ</a></li>
+                    <li><a href="/gallery_2">عکس</a></li>
+                    <li>
+                        <a id="loginbtn" href="/index" class="btn btn-link p-1 ml-2">
+                            <img src="{% static 'Images/Svg/login.svg' %}"/><span class="mr-1">صفحه اصلی</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="mt-3">
+    <div class="container">
+        <div class="row box mx-wh p-4 bg-half">
+            <div class="col-md-3 text-center">
+                <img src="{{ info.imag.url }}" class="img-fluid rounded-circle border pic160" />
+                <p class="pt-3 IRANSansWeb_Medium">کد مشاور : 1245</p>
+            </div>
+            <div class="col-md-9 text-md-right text-center">
+                <h3 class="IRANSansWeb_Medium text-white b-dark mb-0">{{ info.namefull }}</h3>
+                <span class="float-md-left float-none">
+                    <i class="fas fa-star text-warning"></i>
+                    <p><strong>کد ملی:</strong> {{ info.codemeli }}</p>
+                    <p><strong>ایمیل:</strong> {{ info.email }}</p>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                </span>
+                <p class="text-sm-white IRANSansWeb_Medium text-white b-dark">{{ info.typetakhasos.all|join:", " }}</p>
+                <p class="mt-3 mb-0 IRANSansWeb_Medium text-success"><i class="online ml-2"></i>آماده پاسخگویی</p>
+                <p>
+                    <span class="IRANSansWeb_Medium">4158 سوال (در مدت 2 سال و 5 ماه)</span>
+                    <span class="IRANSansWeb_Medium text-primary p-2 rad12 mb-0"><i class="far fa-comment pl-2"></i>2549 نظر</span>
+                </p>
+                <!-- دکمه‌های ویرایش و حذف -->
+                <div class="mt-3">
+                    <a href="{% url 'update_moshaver' info.id %}" class="btn btn-warning">ویرایش</a>
+                    <form action="{% url 'delet_moshaver' info.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">حذف</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- جدول اطلاعات مشاور -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>مشخصه</th>
+                            <th>مقدار</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>نام و نام خانوادگی</td>
+                            <td>{{ info.namefull }}</td>
+                        </tr>
+                        <tr>
+                            <td>کد ملی</td>
+                            <td>{{ info.codemeli }}</td>
+                        </tr>
+                        <tr>
+                            <td>تاریخ تولد</td>
+                            <td>{{ info.datetime }}</td>
+                        </tr>
+                        <tr>
+                            <td>جنسیت</td>
+                            <td>{{ info.jensiyat }}</td>
+                        </tr>
+                        <tr>
+                            <td>میزان تحصیلات</td>
+                            <td>{{ info.mizantahsilat }}</td>
+                        </tr>
+                        <tr>
+                            <td>نوع مدرک</td>
+                            <td>{{ info.typemadrak }}</td>
+                        </tr>
+                        <tr>
+                            <td>نوع تخصص</td>
+                            <td>{{ info.typetakhasos.all|join:", " }}</td>
+                        </tr>
+                        <tr>
+                            <td>سوابق تحصیلی</td>
+                            <td>{{ info.savabeghtahsili }}</td>
+                        </tr>
+                        <tr>
+                            <td>سوابق علمی</td>
+                            <td>{{ info.savabeghelmi }}</td>
+                        </tr>
+                        <tr>
+                            <td>چند سال تجربه کار دارید</td>
+                            <td>{{ info.saltajrobe }}</td>
+                        </tr>
+                        <tr>
+                            <td>استان</td>
+                            <td>{{ info.ostan }}</td>
+                        </tr>
+                        <tr>
+                            <td>شهر</td>
+                            <td>{{ info.city }}</td>
+                        </tr>
+                        <tr>
+                            <td>آدرس محل کار</td>
+                            <td>{{ info.adress }}</td>
+                        </tr>
+                        <tr>
+                            <td>شماره تماس</td>
+                            <td>{{ info.tell }}</td>
+                        </tr>
+                        <tr>
+                            <td>تلفن محل کار</td>
+                            <td>{{ info.zaman }}</td>
+                        </tr>
+                        <tr>
+                            <td>نوع مشاوره</td>
+                            <td>{{ info.online.all|join:", " }}</td>
+                        </tr>
+                        <tr>
+                            <td>مدت زمان هر جلسه به دقیقه</td>
+                            <td>{{ info.modat }}</td>
+                        </tr>
+                        <tr>
+                            <td>هزینه هر جلسه به تومان</td>
+                            <td>{{ info.hazine }}</td>
+                        </tr>
+                        <tr>
+                            <td>روزهای نوبت دهی حضوری</td>
+                            <td>{{ info.rozhozor }}</td>
+                        </tr>
+                        <tr>
+                            <td>روزهای نوبت دهی آنلاین</td>
+                            <td>{{ info.rozonline }}</td>
+                        </tr>
+                        <tr>
+                            <td>ایمیل</td>
+                            <td>{{ info.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>درباره خودتان</td>
+                            <td>{{ info.biyografi }}</td>
+                        </tr>
+                        <tr>
+                            <td>شروع ساعت کاری</td>
+                            <td>{{ info.start_time }}</td>
+                        </tr>
+                        <tr>
+                            <td>پایان ساعت کاری</td>
+                            <td>{{ info.end_time }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script>
+    function goToId(hash, animationTime) {
+        var target = hash,
+            scrollTop = target != "" ? $(target).offset().top : 0;
+        $('html, body').stop().animate({
+            'scrollTop': scrollTop
+        }, animationTime, 'swing', function () {
+            window.location.hash = target;
+        });
+    }
+</script>
+{{ form.media }}
+<script src="{% static 'js/appointment.js' %}"></script>
+{% endblock %}

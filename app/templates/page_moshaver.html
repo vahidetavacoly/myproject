@@ -1,0 +1,226 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+{% include "navbark.html"%}
+{% load static %}
+
+
+
+
+
+   
+
+      
+
+
+
+
+
+
+<body>
+  
+   
+ 
+      
+       
+        
+  
+      
+ 
+
+    <section class="mt-3 ">
+
+        <div class="container">
+            <div class="row box  mx-wh  p-4  bg-half">
+                <h1>پروفایل مشاور</h1>
+                <p>نام: {{ consultant.namefull }}</p>
+            
+
+                 <div class="col-md-3  text-center">
+                  
+                  <img src="{{ consultant.imag.url }}" class="img-fluid rounded-circle border pic160" />
+                
+                    <br />
+                  
+                    <p class="pt-3 IRANSansWeb_Medium">کد مشاور : 1245</p>
+                </div>
+                <div class="col-md-9 text-md-right text-center">
+                   
+                   
+                    <h3 class="IRANSansWeb_Medium text-white b-dark mb-0">{{consultant.namefull}}</h3>
+                
+                    <span class="float-md-left float-none">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </span>
+                 
+                    <p class="text-sm-white IRANSansWeb_Medium text-white b-dark">  {{consultant.typetakhasos}}  
+                     </p>
+                  
+              <p>
+                 
+               
+                 
+              </p>
+              <a href="{% url 'consultant_podcasts' consultant.id %}" class="btn btn-success px-4 py-2 text-white  rad25 float-md-left mb-3  ">
+                مشاهده تمامی پادکست‌های مشاور
+             </a><br>
+            <a href="{% url 'consultant_test' consultant.id %}" class="btn btn-success px-4 py-2 text-white  rad25 float-md-left mb-3  ">
+                مشاهده تمامی تست های  مشاور
+            </a><br>
+            <a href="{% url 'consultant_vidio' consultant.id %}" class="btn btn-success px-4 py-2 text-white  rad25 float-md-left mb-3  ">
+                مشاهده تمامی ویدیوهای  مشاور
+            </a><br>
+        
+                 
+                </div>
+            </div>
+                                                                                                                                                                          
+            <div class="row mt-4 p-4  mx-wh box">
+                <div class="col-md-12">
+                  
+                    <h5 class="IRANSansWeb_Medium bg-light rad25 py-2 px-3 ">درباره مشاور</h5>
+                    <p class="text-justify">
+                        {{consultant.biyografi}}
+                     
+                    </p>
+                
+                </div>
+            </div>
+
+          
+
+           
+
+
+            <div class="mt-4 p-4  mx-wh box">
+                <h5 class="IRANSansWeb_Medium bg-light py-2 px-3  mb-4 rad25">نظرات کاربران</h5>
+
+                <ul>
+                    <li>
+                        <div class="d-flex flex-row flex-wrap justify-content-between dash rad25 m-md-3 m-1 p-3">
+                            <div>
+                                {% csrf_token %} 
+                                {% for item in tabel %}
+                                <span class="IRANSansWeb_Medium pl-4">{{item.name}}</span>
+                                <span>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </span>
+                                <p class="mb-0"{{item.caption}}</p>
+                                    {% endfor %}
+                            </div>
+
+                            <div class="float-left">
+                                <span>22 : 16</span> -
+                                <span>1398/4/25</span>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex flex-row flex-wrap justify-content-between dash rad25 m-md-3 m-1 p-3">
+                            <div>
+                                <span class="IRANSansWeb_Medium pl-4">مهسا حمیدی</span>
+                                <span>
+
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </span>
+                                <p class="mb-0">خوبه راضی ام</p>
+                            </div>
+
+                            <div class="float-left">
+                                <span>22 : 16</span> -
+                                <span>1398/4/25</span>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex flex-row flex-wrap justify-content-between dash rad25 m-md-3 m-1 p-3">
+                            <div>
+                                <span class="IRANSansWeb_Medium pl-4">علی رضایی</span>
+                                <span>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+
+                                </span>
+                                <p class="mb-0">تخصص شون عالی بود ممنون</p>
+                            </div>
+
+                            <div class="float-left">
+                                <span>22 : 16</span> -
+                                <span>1398/4/25</span>
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+            
+            
+                <div class="py-3 px-sm-5 sencom">
+                    <h6 class="IRANSans-Bold pl-2 ml-3 IRANSansWeb_Medium">ارسال دیدگاه :</h6>
+                    <img src="Images/avatar.jpg" class="img-fluid mb-2 rounded-circle" />
+                    <form class="comment-form" id="contact_form_submit" action="{{ action }}" method="post">
+                        {% csrf_token %}
+                        {% for item in form %}
+                        <div class="form-group ">
+                       
+                            <div class="form-group">
+                                <input class="form-control w-75" type="text" placeholder="نـام" />{{item.name}}
+                                <input class="form-control w-75" type="email" placeholder="ایـمیل" />{{item.email}}
+                                <textarea class="form-control area" cols="60" rows="9" placeholder="دیدگاه" style="min-height: 150px!important">{{item.caption}}</textarea>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-warning mb-3">ارسـال &nbsp;<i class="fa fa-paper-plane"></i></button>
+                    </div>
+                  
+                  
+                   
+                </form>
+
+                </div>
+            
+            
+            </div>
+
+          
+
+        </div>
+    </section>
+   
+  
+
+
+
+
+
+
+</body>
+{% endblock %}
+{% block script %}
+
+<script>
+    function goToId(hash, animationTime) {
+        var target = hash,
+            scrollTop = target != "" ? $(target).offset().top : 0;
+        $('html, body').stop().animate({
+            'scrollTop': scrollTop
+        }, animationTime, 'swing', function () {
+            window.location.hash = target;
+        });
+    }
+
+</script>
+{{ form.media }}
+   <script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}
+

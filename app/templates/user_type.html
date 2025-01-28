@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<h2>انتخاب نوع کاربر</h2>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-success text-white rad25">ادامه دهید </button>
+</form>
+
+
+
+
+
+
+
+{% endblock %}
+{% block script %}
+   {{ form.media }}    
+
+   <script src="{% static 'js/image.js' %}"></script>
+{% endblock %}

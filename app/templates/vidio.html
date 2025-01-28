@@ -1,0 +1,269 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+<body id="reservation">
+
+  
+    <section class="container mt-3 p-lg-3">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 mb-3 leftcol">
+                <div class="box p-4">
+                    <h6 class="IRANSansWeb_Medium bt-color bg-light py-2 px-3 rad25"><i class="fas fa-filter pl-2"></i>فیلترها</h6>
+               <div class="mt-3 pr-3 pl-2 pt-2 brfilter">
+               
+                   <input class="form-control" type="text" placeholder="نام متخصص">
+
+               
+                   <input class="form-control" type="text" placeholder="تخصص">
+
+                 
+                   <select class="custom-select mb-2">
+                       <option selected="selected">استان</option>
+                       <option>تهران</option>
+                       <option>گلستان</option>
+                       <option>همدان</option>
+                       <option>ایلام</option>
+                       <option>کرمانشاه</option>
+                       <option>اصفهان</option>
+                       <option>گیلان</option>
+                   </select>
+                
+                   <select class="custom-select mb-2">
+                       <option selected="selected">شهر</option>
+                       <option>آزادشهر</option>
+                       <option>کلاله</option>
+                       <option>گنبدکاووس</option>
+                       <option>مینودشت</option>
+                       <option>آزادشهر</option>
+                       <option>کلاله</option>
+                       <option>گنبدکاووس</option>
+                       <option>مینودشت</option>
+                   </select>
+               
+                   <span class="IRANSansWeb_Medium">جنسیت :</span>
+                   <div>
+                       <div class="icheck-info">
+                           <input type="radio" checked id="primary1" name="primary" />
+                           <label for="primary1">آقا</label>
+                       </div>
+                       <div class="icheck-info">
+                           <input type="radio" id="primary2" name="primary" />
+                           <label for="primary2">خانم</label>
+                       </div>
+                   </div>
+                   <a id="searcbtn" class="btn btn-success rad25  btn-block p-2 text-white">جستجو</a>
+               </div>
+                   
+
+                </div>
+                <div class="box p-4 text-dark mt-4">
+                    <h6 class="IRANSansWeb_Medium bt-color bg-light py-2 px-3 rad25">دسته بندی ها</h6>
+                    <div id="skill" class="p-2">
+                        <ul>
+                            <li>
+                                <a href="#">تخصص 1<span class="badge badge-secondary mr-3  p-2 rad25 float-left text-dark">125</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 2<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">856</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 3<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">7459</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 4<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">965</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 5<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">8123</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 6<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">7459</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 7<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">965</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 8<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">8123</span></a><br />
+                            </li>
+                      
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="box p-4">
+                    <div class="row">
+                        <div class="col-lg-2 text-lg-right text-center">
+                            <a href="#">
+                                <img src="Images/45.jpg" class="img-fluid rounded-circle mb-lg-0 mb-3" />
+                            </a>
+                        </div>
+                        <div class="col-lg-10 pr-lg-3 text-lg-right text-center">
+
+                            <ul>
+                                <li>
+                                    <span class="float-lg-left ">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                    </span>
+                                </li>
+                                <li>
+                                    <a href="#"><h5 class="IRANSansWeb_Medium">محمد پورهادی</h5></a>
+                                </li>
+                                <li>
+                                    <p>تخصص فرد مورد نظر</p>
+                                    <span class="bg-warning py-1 px-2 text-dark  rad25">2654 مشاوره</span> - <span class="IRANSansWeb_Medium text-danger">256 نظر</span>
+                                    <p class="mt-2 mb-lg-0">تهران - شهرک قدس (غرب) - تقاطع بلوار فرحزادی و شهید دادمان - بیمارستان اتیه - طبقه منفی یک </p>
+                                </li>
+                                <li>
+                                    <a href="Consultation.html" class="btn btn-danger float-lg-left text-white rad25">دریافت مشاوره</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box p-4 mt-3">
+                    <div class="row">
+                        <div class="col-lg-2 text-lg-right text-center">
+                            <a href="#">
+                                <img src="Images/46.jpg" class="img-fluid rounded-circle mb-lg-0 mb-3" />
+                            </a>
+                        </div>
+                        <div class="col-lg-10 pr-lg-3 text-lg-right text-center">
+
+                            <ul>
+                                <li>
+                                    <span class="float-lg-left ">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                    </span>
+
+                                </li>
+                                <li>
+                                    <a href="#"><h5 class="IRANSansWeb_Medium">فاطمه بهرامی</h5></a>
+                                </li>
+                                <li>
+                                    <p>تخصص فرد مورد نظر</p>
+                                    <span class="bg-warning py-1 px-2 text-dark  rad25">154 مشاوره</span> - <span class="IRANSansWeb_Medium text-danger">26 نظر</span>
+                                    <p class="mt-2 mb-lg-0">گنبدکاووس - شهرک قدس (غرب) - تقاطع بلوار فرحزادی و شهید دادمان - بیمارستان اتیه  </p>
+                                </li>
+                                <li class="float-lg-left">
+                                    <a href="Consultation.html" class="btn btn-danger text-white rad25">دریافت مشاوره</a>
+                                    <a href="Reservation.html" class="btn btn-success text-white rad25">نوبت دهی آنلاین</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box p-4 mt-3">
+                    <div class="row">
+                        <div class="col-lg-2 text-lg-right text-center">
+                            <a href="#">
+                                <img src="Images/45.jpg" class="img-fluid rounded-circle mb-lg-0 mb-3" />
+                            </a>
+                        </div>
+                        <div class="col-lg-10 pr-lg-3 text-lg-right text-center">
+
+                            <ul>
+                                <li>
+                                    <span class="float-lg-left">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                    </span>
+                                </li>
+                                <li>
+                                    <a href="#"><h5 class="IRANSansWeb_Medium">فرحان رضایی</h5></a>
+                                </li>
+
+                                <li>
+                                    <p>تخصص فرد مورد نظر</p>
+                                    <span class="bg-warning py-1 px-2 text-dark  rad25">154 مشاوره</span> - <span class="IRANSansWeb_Medium text-danger">26 نظر</span>
+                                    <p class="mt-2 mb-lg-0">شیراز - شهرک قدس (غرب) - تقاطع بلوار فرحزادی و شهید دادمان - کوچه 8 </p>
+                                </li>
+                                <li class="float-lg-left">
+                                    <a href="Consultation.html" class="btn btn-danger text-white rad25">دریافت مشاوره</a>
+                                    <a href="Reservation.html" class="btn btn-success text-white rad25">نوبت دهی آنلاین</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box p-4 mt-3">
+                    <div class="row">
+                        <div class="col-lg-2 text-lg-right text-center">
+                            <a href="#">
+                                <img src="Images/46.jpg" class="img-fluid rounded-circle mb-lg-0 mb-3" />
+                            </a>
+                        </div>
+                        <div class="col-lg-10 pr-lg-3 text-lg-right text-center">
+
+                            <ul>
+                                <li>
+                                    <span class="float-lg-left">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                    </span>
+                                </li>
+                                <li>
+                                    <a href="#"><h5 class="IRANSansWeb_Medium">خدیجه احمدی</h5></a>
+                                </li>
+                                <li>
+                                    <p>تخصص فرد مورد نظر</p>
+                                    <span class="bg-warning py-1 px-2 text-dark  rad25">484 مشاوره</span> - <span class="IRANSansWeb_Medium text-danger">126 نظر</span>
+                                    <p class="mt-2 mb-lg-0">گنبدکاووس - شهرک قدس (غرب) - تقاطع بلوار فرحزادی و شهید دادمان - بیمارستان اتیه  </p>
+                                </li>
+                                <li>
+                                    <a href="Consultation.html" class="btn btn-danger float-lg-left text-white rad25">دریافت مشاوره</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <ul class="pagination mt-3">
+                        <li class="page-item"><a class="page-link" href="#">قبلی</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">بعدی</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+   
+
+
+   
+
+
+</body> 
+{% endblock %}
+
+
+
+
+
+{% block script %}
+
+{{ form.media }}
+   <script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}

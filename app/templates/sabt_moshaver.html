@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+{% include "navbar.html"%}
+    <form class="account-form" action="create_moshaver" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for item in form %}
+                {{ item.label_tag }}
+                {{ item }}
+        
+                    
+                
+            
+            {% endfor %}
+            
+            <button class="btn btn-info btn-block mb-3 py-3" type="submit" > ثبت اطلاعات <i class="fa fa-chevron-left mr-2"></i></button>    
+       
+        </form>
+   
+{% endblock %}
+
+{% block script %}
+                 {{ form.media }}
+
+         <script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}

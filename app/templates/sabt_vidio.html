@@ -1,0 +1,156 @@
+<!-- filepath: /c:/Users/baharan/Desktop/moshaver/myproject/app/templates/sabt_vidio.html -->
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+{% endblock %}
+
+{% block user %}
+{% if user_st.state == True %}
+شما با نام کاربری
+{{ user_st.user }}
+در سایت هستید
+<a class="btn-btn-dager" href=" /autoapp/logouts "> خروج </a>
+{% endif %}
+{% if user_st.state == False %}
+وارد حساب خود شوید
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row" dir="rtl">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header text-right">
+                <button type="button" class="btn btn-success text-white rad25" onclick="creature()" data-toggle="modal" data-target="#myModal">
+                    افزودن ویدیو
+                </button>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>فایل</th>
+                            <th>اعمال</th>
+                        </tr>
+                    </thead>
+                    <tbody class="body-tabel">
+                        {% for item in tabel %}
+                        <tr>
+                            <td>{{ item.title }}</td>
+                            <td>
+                                <video width="100" height="50" controls>
+                                    <source src="{{ item.video.url }}" type="video/mp4">
+                                </video>
+                                <p>{{ item.zaman_bargozary }}</p>
+                            </td>
+                            <td>
+                                <button type="button" onclick="$('.id').val('{{ item.id }}')" class="btn btn-success text-white rad25" data-toggle="modal" data-target="#myModaldelet">
+                                    حذف
+                                </button>
+                                <button type="button" onclick="editVidio('{{ item.id }}', '{{ item.title }}')" class="btn btn-warning text-white rad25" data-toggle="modal" data-target="#myModalEdit">
+                                    ویرایش
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودال افزودن ویدیو -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content" style="direction:rtl;">
+            <div class="modal-header">
+                <h4 class="modal-title">فایل ویدیویی</h4>
+                <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-right">
+                <form method="post" action="create_vidio" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for item in form %}
+                    <div class="form-group">
+                        {{ item.label_tag }}
+                        {{ item }}
+                    </div>
+                    {% endfor %}
+                    <div class="alert alert-info result"></div>
+                    <div class="text_center">
+                        <button type="submit" class="btn btn-success text-white rad25">ثبت</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودال ویرایش ویدیو -->
+<div class="modal" id="myModalEdit">
+    <div class="modal-dialog">
+        <div class="modal-content" style="direction:rtl;">
+            <div class="modal-header">
+                <h4 class="modal-title">ویرایش ویدیو /</h4>
+                <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-right">
+                <form id="editForm" method="post" action="{% url 'update_vidio' 0 %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" id="editId">
+                    <div class="form-group">
+                        <label for="editTitle">عنوان</label>
+                        <input type="text" name="title" id="editTitle" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="editVideo">فایل</label>
+                        <input type="file" name="video" id="editVideo" class="form-control">
+                    </div>
+                    <div class="alert alert-info result"></div>
+                    <div class="text_center">
+                        <button type="submit" class="btn btn-success text-white rad25">ثبت</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودال حذف ویدیو -->
+<div class="modal" id="myModaldelet">
+    <div class="modal-dialog">
+        <div class="modal-content" style="direction:rtl;">
+            <div class="modal-header">
+                <h4 class="modal-title">تاییدیه حذف</h4>
+                <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-right">
+                <form method="post" action="" class="frm-delet">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" class="id">
+                    ایا مایل به حذف هستید
+                    <div class="alert alert-info result-delet"></div>
+                    <div class="text_center">
+                        <button type="button" class="btn btn-info ml-2 ok_delet">بله</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/vidio.js' %}"></script>
+<script>
+    function editVidio(id, title) {
+        $('#editId').val(id);
+        $('#editTitle').val(title);
+        $('#editForm').attr('action', '{% url "update_vidio" 0 %}'.replace('0', id));
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+
+
+
+<div class="row"  dir="rtl">
+    <div class="col-md-8" >
+     <div class="card">
+        <div class="card-header text-right " >
+
+            
+        </div>
+            <div class="card-body">
+               
+
+                  <table class="table">
+                      <thead>
+                        <tr>
+                       
+                          <th>متن  </th>
+                     
+
+                          <th>اعمال  </th>
+
+                        </tr>
+                      </thead>
+                      <tbody class="body-tabel">
+                              {% for item in tabel %}
+                                  <tr>
+                  
+                          <td>{{item.caption}}</td>
+
+ 
+                      <td>
+                          <button type="button"  onclick="getdata({{item.id}})"
+                          class="btn btn-danger" data-toggle="modal" data-target="#myModal"> پاسخ
+                        </button>
+              
+
+
+                      <td>                       
+                                                  
+
+                                                       
+                                                                
+
+
+
+
+
+
+
+
+
+
+                        </tr>
+                              {% endfor %}
+
+
+                      </tbody>
+                  </table>
+
+                   
+
+        </div>
+
+      </div>
+    </div>
+</div>
+
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content" style="direction:rtl;">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">جواب</h4>
+        <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body text-right">
+          <form method="post" action="" class="formj" >
+                      {% csrf_token %}
+                      {% for item in  forms %}
+                           <div class="form-group">
+                              {{ item.label_tag }}
+                              {{ item }}
+                           </div>
+                      {% endfor %}
+
+
+                     <div class="alert alert-info resultj " >
+
+                     </div>
+              <div class="text_center" >
+                  <button type="button" class="btn btn-info ml-2  savej " >ثبت    </button>
+                  <div class="mb-4">
+                    <input id="soal_id"  name="soal_id" type="hidden" value="">
+        </div>
+              </div>
+          </form>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}
+{% block script %}
+
+
+   <script src="{% static 'js/faq.js' %}"></script>
+{% endblock %}

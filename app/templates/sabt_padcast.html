@@ -1,0 +1,163 @@
+<!-- filepath: /c:/Users/baharan/Desktop/moshaver/myproject/app/templates/sabt_padcast.html -->
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+{% endblock %}
+
+{% block user %}
+{% if user_st.state == True %}
+شما با نام کاربری
+{{ user_st.user }}
+در سایت هستید
+<a class="btn-btn-dager" href=" /autoapp/logouts "> خروج </a>
+{% endif %}
+{% if user_st.state == False %}
+وارد حساب خود شوید
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row" dir="rtl">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header text-right">
+                <button type="button" class="btn btn-success text-white rad25" onclick="creature()" data-toggle="modal" data-target="#myModal">
+                    افزودن پادکست
+                </button>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>متن</th>
+                            <th>فایل</th>
+                            <th>اعمال</th>
+                        </tr>
+                    </thead>
+                    <tbody class="body-tabel">
+                        {% for item in tabel %}
+                        <tr>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.caption }}</td>
+                            <td>
+                                <audio controls>
+                                    <source src="{{ item.audio.url }}" type="audio/mpeg">
+                                </audio>
+                                <p>{{ item.tarikhenteshar }}</p>
+                            </td>
+                            <td>
+                                <button type="button" onclick="$('.id').val('{{ item.id }}')" class="btn btn-success text-white rad25" data-toggle="modal" data-target="#myModaldelet">
+                                    حذف
+                                </button>
+                                <button type="button" onclick="editPodcast('{{ item.id }}', '{{ item.title }}', '{{ item.caption }}')" class="btn btn-warning text-white rad25" data-toggle="modal" data-target="#myModalEdit">
+                                    ویرایش
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودال افزودن پادکست -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content" style="direction:rtl;">
+            <div class="modal-header">
+                <h4 class="modal-title">پادکست /</h4>
+                <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-right">
+                <form method="post" action="create_padcast" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for item in form %}
+                    <div class="fom_group">
+                        {{ item.label_tag }}
+                        {{ item }}
+                    </div>
+                    {% endfor %}
+                    <div class="alert alert-info result"></div>
+                    <div class="text_center">
+                        <button type="submit" class="btn btn-success text-white rad25">ثبت</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودال ویرایش پادکست -->
+<div class="modal" id="myModalEdit">
+    <div class="modal-dialog">
+        <div class="modal-content" style="direction:rtl;">
+            <div class="modal-header">
+                <h4 class="modal-title">ویرایش پادکست /</h4>
+                <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-right">
+                <form id="editForm" method="post" action="{% url 'update_padcast' 0 %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" id="editId">
+                    <div class="fom_group">
+                        <label for="editTitle">عنوان</label>
+                        <input type="text" name="title" id="editTitle" class="form-control">
+                    </div>
+                    <div class="fom_group">
+                        <label for="editCaption">متن</label>
+                        <input type="text" name="caption" id="editCaption" class="form-control">
+                    </div>
+                    <div class="fom_group">
+                        <label for="editAudio">فایل</label>
+                        <input type="file" name="audio" id="editAudio" class="form-control">
+                    </div>
+                    <div class="alert alert-info result"></div>
+                    <div class="text_center">
+                        <button type="submit" class="btn btn-success text-white rad25">ثبت</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودال حذف پادکست -->
+<div class="modal" id="myModaldelet">
+    <div class="modal-dialog">
+        <div class="modal-content" style="direction:rtl;">
+            <div class="modal-header">
+                <h4 class="modal-title">تاییدیه حذف</h4>
+                <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-right">
+                <form method="post" action="" class="frm-delet">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" class="id">
+                    ایا مایل به حذف هستید
+                    <div class="alert alert-info result-delet"></div>
+                    <div class="text_center">
+                        <button type="button" class="btn btn-info ml-2 ok_delet">بله</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/padcasts.js' %}"></script>
+<script>
+    function editPodcast(id, title, caption) {
+        $('#editId').val(id);
+        $('#editTitle').val(title);
+        $('#editCaption').val(caption);
+        $('#editForm').attr('action', '{% url "update_padcast" 0 %}'.replace('0', id));
+    }
+</script>
+{% endblock %}

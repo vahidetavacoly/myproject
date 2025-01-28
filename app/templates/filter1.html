@@ -1,0 +1,182 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-dager" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+
+    {% endif %}
+
+
+{% endblock %}
+{% block body %}
+{% include "navbark.html"%}
+
+
+
+
+    <section class="container mt-3 p-lg-3">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 mb-3 leftcol">
+               
+                <div class="box p-4 text-dark mt-4">
+                    <h6 class="IRANSansWeb_Medium bt-color bg-light py-2 px-3 rad25">دسته بندی ها</h6>
+                    <div id="skill" class="p-2">
+                        <ul>
+                            <li>
+                                <a href="#">تخصص 1<span class="badge badge-secondary mr-3  p-2 rad25 float-left text-dark">125</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 2<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">856</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 3<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">7459</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 4<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">965</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 5<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">8123</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 6<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">7459</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 7<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">965</span></a><br />
+                            </li>
+                            <li>
+                                <a href="#">تخصص 8<span class="badge badge-secondary p-2 mr-3 rad25 float-left text-dark">8123</span></a><br />
+                            </li>
+                      
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+               
+                <div class="box p-4">
+                    
+                    <div class="row">
+                       <!-- moshaver_list.html -->
+              <div class="col-lg-2 text-lg-right text-center">
+                           
+                            <div class="pagination">
+                                <span class="step-links">
+                                    {% if page_obj.has_previous %}
+                                        <a href="?page=1">&laquo; اولین</a>
+                                        <a href="?page={{ page_obj.previous_page_number }}">قبلی</a>
+                                    {% endif %}
+                                    
+                                    <span class="current">
+                                        صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}.
+                                    </span>
+                            
+                                    {% if page_obj.has_next %}
+                                        <a href="?page={{ page_obj.next_page_number }}">بعدی</a>
+                                        <a href="?page={{ page_obj.paginator.num_pages }}">آخرین &raquo;</a>
+                                    {% endif %}
+                                </span>
+                            </div>
+
+
+
+
+
+
+                            {% csrf_token %}
+                          
+                            <a href="#">
+                                {% for item in filter %}
+                                <img class="img-fluid rounded-circle mb-lg-0 mb-3" src="{{ item.imag.url }}" />
+                            </a>
+                      
+                        </div>
+                        <div class="col-lg-10 pr-lg-3 text-lg-right text-center">
+               
+                            <ul>
+                                <li>
+                                    <span class="float-lg-left ">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                    </span>
+                                </li>
+                                <li> <ul>
+                                   
+                                        
+                                  
+                                </ul>
+                                 
+                                    <a href="#"><h5 class="IRANSansWeb_Medium"> {{item.namefull}}</h5></a>
+                             
+                                </li>
+                                <li>
+                                    <p>{{type.name}}   </p>
+                                    <span class="bg-warning py-1 px-2 text-dark  rad25">2654 مشاوره</span> - <span class="IRANSansWeb_Medium text-danger">256 نظر</span>
+                                    <p class="mt-2 mb-lg-0">     {{item.adress}}    </p>
+                                </li>
+                               <li class="float-lg-left">
+                                <li class="float-lg-left">
+                                    <a href="/get/{{item.id}}" class="btn btn-danger text-white rad25">پنل مشاور </a>
+                                   
+                                    <a href="/reservation/{{item.id}}" class="btn btn-success text-white rad25">نوبت دهی   </a>
+                                    </li>
+                                    {% empty %}
+                                    <li> مشاوری برای این نوع یافت نشد</li>
+                                    {% endfor %}
+                              
+                            </ul>
+                      
+                        </div>
+                       
+                </div>
+             
+            
+
+            
+
+            
+
+                <div class="text-center">
+                    <ul class="pagination mt-3">
+                        <li class="page-item"><a class="page-link" href="#">قبلی</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">بعدی</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+   
+
+
+
+
+{% endblock %}
+
+{% block script %}
+{{ form.media }}
+
+   <script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}
+   
+
+
+

@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+<div class="row"  dir="rtl">
+    <div class="col-md-8" >
+     <div class="card">
+        <div class="card-header text-right " >
+
+            <button type="button" class="btn btn-primary"  onclick="creature()" data-toggle="modal" data-target="#myModal">
+               افزودن مطالب
+            </button>
+        </div>
+            <div class="card-body">
+               
+
+                   <table class="table">
+                      <thead>
+                        <tr>
+                          <th>عنوان  </th>
+                       
+                          <th> متن </th>
+
+                          <th>اعمال  </th>
+
+                        </tr>
+                      </thead>
+                      <tbody class="body-tabel">
+                              {% for item in tabel %}
+                                  <tr>
+                          <td>{{item.title}}</td>
+                          <td>{{item.caption}}</td>
+
+
+                          
+
+                          <td>                           <button type="button"  onclick="setdata('{{item.title}}','{{item.caption}}','{{item.id}}')"
+                                                                  class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                            ویرایش
+                                                          </button>
+
+                                                          <button type="button"  onclick="$('.id').val('{{item.id}}')"
+                                                                  class="btn btn-danger" data-toggle="modal" data-target="#myModaldelet">
+                                                          حذف
+                                                          </button>
+                                                              
+
+
+
+
+
+
+
+
+
+
+                        </tr>
+                              {% endfor %}
+
+
+                      </tbody>
+                  </table>
+
+
+
+        </div>
+
+      </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content" style="direction:rtl;">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"> گذاشتن مطلب</h4>
+          <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body text-right">
+            <form method="post" action="" class="frm" >
+                      {% csrf_token %}
+                        {% for item in  form %}
+                             <div class="form-group">
+                                            {{ item.label_tag }}
+                                            {{ item }}
+                             </div>
+                        {% endfor %}
+
+
+                       <div class="alert alert-info result " >
+
+                       </div>
+                <div class="text_center" >
+                    <button type="button" class="btn btn-info ml-2  savedata " >ثبت    </button>
+
+                </div>
+            </form>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+<div class="modal" id="myModaldelet">
+    <div class="modal-dialog">
+      <div class="modal-content" style="direction:rtl;">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">تاییدیه حذف</h4>
+          <button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body text-right">
+            <form method="post" action="" class="frm-delet">
+                  {% csrf_token %}
+                <input type="hidden" name="id" class="id">
+                    ایا مایل به حذف هستید
+
+
+                       <div class="alert alert-info result-delet " >
+
+                       </div>
+                <div class="text_center" >
+                    <button type="button" class="btn btn-info ml-2  ok_delet " >بله   </button>
+
+                </div>
+            </form>
+        </div>
+
+
+
+      </div>
+    </div>
+</div>
+
+  
+
+
+{% endblock %}
+{% block script %}
+{{ form.media }}
+
+   <script src="{% static 'js/blog.js' %}"></script>
+{% endblock %}

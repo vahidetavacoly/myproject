@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-dager" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+{% include "navbark.html"%}
+
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1>ارسال مدارک</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="document">مدارک مورد نظر خود را آپلود کنید</label>
+                    <input type="file" id="document" name="document" required>
+                </div>
+                
+                <button type="submit" class="btn btn-success text-white rad25">ارسال مدارک</button>
+            </form>
+        </div>
+        
+        
+        <!-- filepath: /c:/Users/baharan/Desktop/moshaver/myproject/app/templates/license_verification.html -->
+       
+    </div>
+</body>
+{% endblock %}
+
+{% block script %}
+{{ form.media }}
+<script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}

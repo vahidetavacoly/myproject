@@ -1,0 +1,259 @@
+/* استایل‌های چت باکس */
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+/* استایل‌های بخش ورودی پیام */
+.message-input-container {
+    display: flex;
+    gap: 10px;
+}
+
+.message-input-container textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    resize: none;
+}
+
+.message-input-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+.message-input-container button:hover {
+    background-color: #218838;
+}
+body {
+    font-size: 14px; /* کاهش سایز فونت کلی */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.2rem; /* کاهش سایز فونت عنوان‌ها */
+}
+
+p, li, .text-white, .user-info p {
+    font-size: 0.875rem; /* کاهش سایز فونت پاراگراف‌ها */
+}
+
+.chat-box {
+    font-size: 0.75rem; /* کوچک‌تر کردن سایز فونت پیام‌ها */
+}
+
+.message-input-container textarea {
+    font-size: 0.75rem; /* کوچک‌تر کردن سایز فونت ورودی پیام */
+}
+
+button {
+    font-size: 0.75rem; /* کوچک‌تر کردن سایز فونت دکمه‌ها */
+}
+/* استایل‌های پایه برای صفحه */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'IRANSansWeb', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* تنظیمات برای بخش اصلی */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* عنوان صفحه */
+.page-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* طراحی جدول */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* بخش کارت‌ها */
+.box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* فریم‌های ریسپانسیو */
+@media (max-width: 767px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .table th, .table td {
+        padding: 8px;
+    }
+}
+
+    /* استایل برای کانتینر اصلی */
+    .waiting-container {
+        max-width: 600px; /* عرض حداکثر 600px */
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* استایل عنوان */
+    .waiting-title {
+        font-size: 1.8em;
+        color: #2c3e50;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* استایل پیام */
+    .waiting-message {
+        font-size: 1.2em;
+        color: #7f8c8d;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    /* استایل برای تغییر رنگ پیام به وضعیت‌های مختلف */
+    .waiting-message {
+        animation: pulse 2s infinite; /* انیمیشن رنگی برای جلب توجه */
+    }
+
+    /* انیمیشن برای پیام انتظار */
+    @keyframes pulse {
+        0% {
+            color: #7f8c8d;
+        }
+        50% {
+            color: #f39c12; /* رنگ زرد برای جلب توجه */
+        }
+        100% {
+            color: #7f8c8d;
+        }
+    }
+
+    /* طراحی واکنشگرا برای موبایل */
+    @media (max-width: 768px) {
+        .waiting-title {
+            font-size: 1.5em;
+        }
+
+        .waiting-message {
+            font-size: 1.1em;
+        }
+    }
+/* استایل‌های پایه برای صفحه */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'IRANSansWeb', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* تنظیمات برای بخش اصلی */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* عنوان صفحه */
+.page-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* طراحی جدول */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* بخش کارت‌ها */
+.box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* فریم‌های ریسپانسیو */
+@media (max-width: 767px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .table th, .table td {
+        padding: 8px;
+    }
+}
+
+
+

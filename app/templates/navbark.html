@@ -1,0 +1,63 @@
+{% load static %}
+<header class="nav-container">
+    <nav class="sina-nav mobile-sidebar navbar-fixed" data-top="60">
+        <div class="container">
+
+            <div class="extension-nav">
+                <ul class="pt-2">
+                    <li>{% comment %}
+                        <a id="loginbtn" href="/Login" class="btn btn-link p-1 ml-2">
+                            <img src="{% static 'Images/Svg/login.svg' %}"/><span class="mr-1">ورود</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a id="loginbtn" href="/Register" class="btn btn-link p-1 ml-2">
+                            <img src="{% static 'Images/Svg/user.svg' %}"/><span class="mr-1">ثبت نام</span>
+                        </a>
+                    </li>{% endcomment %}
+                </ul>
+            </div>
+            <div class="sina-nav-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="sina-brand pl-4" href="/Index">
+                    <img src="{% static 'Images/logo.png' %}" class="img-fluid" />
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="sina-menu sina-menu-center IRANSansWeb">
+                    <li><a href="/index">صفحه اصلی</a></li>
+                 
+                       
+                    
+                           
+                       
+                    </li>
+                    <li><a href="/list_blog">وبلاگ</a></li>
+                    <li><a href="/list_moshaver">جستجوی پیشرفته</a>
+                      
+                    </li>
+                    
+
+                    <li><a href="/Faq">پرسش و پاسخ</a></li>
+                    <li><a href="/list_about">درباره ما</a></li>
+                    <li><a href="/ContactUs">ارتباط با ما</a></li>
+                    <li><a href="/listnobatman"> نوبت من</a></li>
+                    
+                                <ul>
+                                    {% for item in active_appointments %}
+                                        <li>
+                                            :نوبت شما با مشاور{{ appointment.consultant.namefull }} <a href="/consultant_panel/{{item.id}}">برو به پنل مشترک </a> 
+                                           
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                           
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,115 @@
+<!-- filepath: /c:/Users/baharan/Desktop/moshaver/myproject/rezerv/templates/chat_room.html -->
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+    اتاق چت
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-dager" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+{% include "navbar2.html"%}
+<link href="{% static 'Css/chat.css' %}" rel="stylesheet" />
+
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-lg-4">
+            <div>
+                <div class="my-2 box grad-bg p-4">
+                    <div class="row rounded text-sm-right text-center pt-3">
+                        <div class="col-lg-4 col-sm-3"></div>
+                        <div class="col-lg-8 col-sm-9 pr-3">
+                            <div id="bio" class="text-white">
+                                <h5 class="IRANSansWeb_Medium bt-color">
+                                    <div class="profile-info">
+                                        <h3>مشخصات پزشک</h3>
+                                        <p><strong>نام پزشک:</strong> {{ consultant.namefull }}</p>
+                                    </div>
+                                </h5>
+                                <p class="">
+                                    <div class="user-info">
+                                        <h3>مشخصات کاربر</h3>
+                                        <p><strong>نام کاربری:</strong> {{ user.username }}</p>
+                                    </div>
+                                </p>
+                                <span>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-2 box p-4">
+                    <h6 class="IRANSansWeb_Medium bt-color bg-light py-2 px-3 mb-4 rad25">شبکه های اجتماعی</h6>
+                    <a href="#" target="_blank">
+                        <img class="socialsize" src="{% static 'Images/Svg/telegram.png' %}" alt="">
+                    </a>
+                    <a href="#" target="_blank">
+                        <img class="socialsize" src="{% static 'Images/Svg/Instagram.png' %}" alt="">
+                    </a>
+                    <a href="#" target="_blank">
+                        <img class="socialsize" src="{% static 'Images/Svg/whatsapp-tile.svg' %}" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="box p-md-4 p-2">
+                <div class="chat-container">
+                    <div class="messages" id="messages">
+                        <!-- نمایش پیام‌ها -->
+                        {% for message in messages %}
+                        <div class="message">
+                            <strong>{{ message.sender.username }}:</strong> {{ message.content }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="message-input">
+                        <form id="messageForm" method="post" action="{% url 'send_message' appointment.id %}">
+                            {% csrf_token %}
+                            <input type="text" name="message" id="messageInput" placeholder="پیام خود را وارد کنید..." class="form-control">
+                            <button type="submit" class="btn btn-primary mt-2">ارسال</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+    {{ form.media }}
+    <script src="{% static 'js/chat.js' %}"></script>
+    <script>
+        // ارسال پیام با AJAX
+        $('#messageForm').on('submit', function(e) {
+            e.preventDefault();
+            var messageInput = $('#messageInput');
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    if (response.success) {
+                        $('#messages').append('<div class="message"><strong>' + response.sender + ':</strong> ' + response.message + '</div>');
+                        messageInput.val('');
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

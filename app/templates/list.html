@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-danger" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+    {% endif %}
+{% endblock %}
+
+<head>
+<meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+
+{% block body %}
+{% include "navbar2.html"%}
+<link href="{% static 'Css/chat.css' %}" rel="stylesheet" />
+<body id="online">
+
+<section class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <!-- جدول لیست نوبت‌ها -->
+            <div class="box p-md-4 p-2">
+                <div class="row">
+                    <!-- ستون پادکست‌ها -->
+                    <div class="col-md-4 blogpost">
+                        <h5 class="IRANSansWeb_Medium pb-2 text-center">پـادکست ها</h5>
+                        <ul class="box pt-3">
+                            <h1>پادکست‌های مشاور: {{ consultant.namefull }}</h1>
+                            <ul>
+                                {% for item in podcasts %}
+                                <li>
+                                    <strong>{{ item.title }}</strong>
+                                    <p>{{ item.description }}</p>
+                                    <audio controls>
+                                        <source src="{{ item.padcast.url }}" type="audio/mpeg">
+                                    </audio>
+                                </li>
+                                {% empty %}
+                                <p>هیچ پادکستی ثبت نشده است.</p>
+                                {% endfor %}
+                            </ul>
+   
+                        </ul>
+                    </div>
+
+                    <!-- ستون ویدیوها -->
+                    <div class="col-md-4 blogpost">
+                        <h5 class="IRANSansWeb_Medium pb-2 text-center">ویدئوها</h5>
+                        <ul class="box pt-3">
+                            <h1>ویدیوها  مشاور: {{ consultant.namefull }}</h1>
+                            <ul>
+                                {% for item in datav %}
+                                <li>
+                                    <strong>{{ item.title }}</strong>
+                                    <p>{{ item.zaman_bargozary }}</p>
+                                    <video controls>
+                                        <source src="{{ item.vidio.url }}" controls>
+                                    </video>
+                                </li>
+                                {% empty %}
+                                <p>هیچ ویدیویی ثبت نشده است.</p>
+                                {% endfor %}
+                                <li>
+                                
+                            </ul>
+                           
+                        </ul>
+                    </div>
+
+                    <!-- ستون تست‌ها -->
+                    <div class="col-md-4 blogpost">
+                        <h5 class="IRANSansWeb_Medium pb-2 text-center">تست ها</h5>
+                        <ul class="box pt-3">
+                            <ul class="box pt-3">
+                                <h1>تستها مشاور: {{ consultant.namefull }}</h1>
+                                <ul>
+                                    {% for item in datat %}
+                                    <li>
+                                        <strong>{{ item.title }}</strong>
+                                        <p>{{ item.zaman_bargozary }}</p>
+                                        
+                                    </li>
+                                    {% empty %}
+                                    <p>هیچ تستی ثبت نشده است.</p>
+                                    {% endfor %}
+                                    <li>
+                                    
+                                </ul>
+
+
+                           
+                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+    {{ form.media }}
+    <script src="{% static 'js/chat.js' %}"></script>
+{% endblock %}

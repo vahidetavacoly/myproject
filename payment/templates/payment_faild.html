@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-dager" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+
+    {% endif %}
+
+
+{% endblock %}
+{% block body %}
+<form class="account-form" action="create_moshaver" method="post">
+    {% csrf_token %}
+    {% for item in form %}
+        {{ item.label_tag }}
+        {{ item }}
+               
+              
+             
+           
+     
+    {% endfor %}
+    <button class="btn btn-danger" type="submit"> ثبت اطلاعات </button>    
+</form>
+
+
+<li class="float-lg-left">
+   
+    
+  
+   
+    <a href="{% url 'pyment_d' pk=x.id %}" class="btn btn-success text-white rad25">مرحله بعدی   </a>
+    </li>
+
+
+
+{% endblock %}
+
+{% block script %}
+
+{{ form.media }}
+   <script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}

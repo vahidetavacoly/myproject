@@ -1,0 +1,546 @@
+﻿{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-dager" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+
+    {% endif %}
+
+
+{% endblock %}
+{% block body %}
+{% include "navbark.html"%}
+
+
+<body id="blog">
+
+
+   
+
+
+    <section id="above-page" class="container-fluid mb-sm-5 mb-3 ">
+        <div class="above-page-img">
+            <img src="Images/bg1.jpg" alt="" title=""  class="d-lg-block d-none">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="above-page-content m-auto text-white text-center">
+                    <div class="above-page-tagline">
+                        <h1 class="main-tagline IRANSansWeb_Medium">دانستنی های وبلاگ</h1>
+                        <h6 class="IRANSansWeb_Medium text-white text-shadow">     از مطالبی که توسلط اساتید و مشاوران عزیز بیان شده است لذت ببرید   </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container quickico">
+        <div class="row value-body m-3 text-center">
+            <a href="#" class="col-sm-2 col-4">
+                <img src="{%static 'Images/Svg/world.svg' %}" />
+                <p>حقوقی</p>
+            </a>
+            <a href="#" class="col-sm-2 col-4">
+                <img src="{%static 'Images/Svg/breakfast.svg' %}" />
+                <p>روانشناسی</p>
+            </a>
+            <a href="#" class="col-sm-2 col-4">
+                <img src="{%static 'Images/Svg/mortarboard.svg' %}" />
+                <p>شغلی</p>
+            </a>
+            <a href="#" class="col-sm-2 col-4">
+                <img src="{%static 'Images/Svg/sunbed.svg' %}" />
+                <p>تحیصیلی</p>
+            </a>
+          
+
+        </div>
+    </section>
+
+    <section class="container mt-5">
+
+        <div id="owl-topblog" class="owl-carousel owl-theme text-right ">
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog4.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="d-flex flex-column blogdiv">
+                        <div>
+                            <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h6>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <img src="{%static 'Images/12.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                            <div>
+                                <p class="text-white IRANSansWeb_Medium text-shadow bottom_p"> {{item.namefull}}</p>
+                                <span class="IRANSansWeb_Medium text-shadow text-white"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div>
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog5.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="d-flex flex-column blogdiv">
+                        <div>
+                            <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
+                                {% csrf_token %} 
+                                {% for item in tabel %}               
+                                   {{item.caption}} 
+                                  
+                                {% endfor %}     
+                               </h6>
+
+                        </div>
+                        <div class="d-flex flex-row">
+                            <img src="{%static 'Images/11.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                            <div>
+                                <p class="text-white IRANSansWeb_Medium text-shadow bottom_p"> مبین حیدری</p>
+                                <span class="IRANSansWeb_Medium text-shadow text-white"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div>
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog6.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="d-flex flex-column blogdiv">
+                        <div>
+                            <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h6>
+
+                        </div>
+                        <div class="d-flex flex-row">
+                            <img src="Images/10.jpg{%static 'Images/topblog4.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                            <div>
+                                <p class="text-white IRANSansWeb_Medium text-shadow bottom_p"> سیما محمدی</p>
+                                <span class="IRANSansWeb_Medium text-shadow text-white"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div>
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog12.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="d-flex flex-column blogdiv">
+                        <div>
+                            <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h6>
+
+                        </div>
+                        <div class="d-flex flex-row">
+                            <img src="{%static 'Images/12.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                            <div>
+                                <p class="text-white IRANSansWeb_Medium text-shadow bottom_p"> عاطف محمدی</p>
+                                <span class="IRANSansWeb_Medium text-shadow text-white"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div><div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog1.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="d-flex flex-column blogdiv">
+                        <div>
+                            <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h6>
+
+                        </div>
+                        <div class="d-flex flex-row">
+                            <img src="{%static 'Images/11.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                            <div>
+                                <p class="text-white IRANSansWeb_Medium text-shadow bottom_p"> سیما محمدی</p>
+                                <span class="IRANSansWeb_Medium text-shadow text-white"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div>
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog9.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="d-flex flex-column blogdiv">
+                        <div>
+                            <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h6>
+
+                        </div>
+                        <div class="d-flex flex-row">
+                            <img src="{%static 'Images/12.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                            <div>
+                                <p class="text-white IRANSansWeb_Medium text-shadow bottom_p">دکتر سیما محمدی</p>
+                                <span class="IRANSansWeb_Medium text-shadow text-white"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div>
+        </div>
+
+    </section>
+
+    <section class="container mt-5 grad-bg px-md-5 pt-3 pb-5 rad25">
+        <h5 class="IRANSansWeb_Medium  text-white pb-3">محبوب ترین ها</h5>
+
+        <div id="owl-secondevent" class="owl-carousel owl-theme text-right ">
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog2.jpg' %}" class="img-fluid rad25 bigpic " />
+                    <div class="blogdiv">
+                        <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم</h6>
+                    </div>
+
+                </a>
+
+            </div>
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog8.jp' %}g" class="img-fluid rad25 bigpic " />
+                    <div class="blogdiv">
+                        <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم</h6>
+                    </div>
+
+                </a>
+
+            </div>
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog13.jpg' %}" class="img-fluid rad25 bigpic " />
+                    <div class="blogdiv">
+                        <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم</h6>
+                    </div>
+
+                </a>
+
+            </div>
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog7.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="blogdiv">
+                        <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم</h6>
+                    </div>
+
+                </a>
+
+            </div><div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog1.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="blogdiv">
+                        <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم</h6>
+                    </div>
+                </a>
+
+            </div>
+            <div class="mx-2">
+                <a href="Blogdetails.html">
+                    <img src="{%static 'Images/topblog8.jpg' %}" class="img-fluid rad25 bigpic" />
+                    <div class="blogdiv">
+                        <h6 class="IRANSansWeb_Medium text-white text-shadow">لورم ایپسوم</h6>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="container mt-5">
+        <h5 class="IRANSansWeb_Medium  text-center bt-color">تازه ترین مقالات</h5>
+        <p class="text-center"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
+        <div id="owl-toparticle" class="owl-carousel owl-theme text-right ">
+            <a href="Blogdetails.html" class="card m-2">
+                <img class="card-img-top" src="{%static 'Images/topblog4.jpg' %}" alt="Card image">
+                <div class="card-body">
+                    {% for item in tabel %}
+                    <h6 class="IRANSansWeb_Medium">   {{item.title}}  </h6>
+                    <p> {{item.caption}}   </p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex flex-row">
+                        <img src=""{{ item.image.url }}" alt="Card image" class="img-fluid rounded-circle ml-3 pic55" />
+                   
+                          
+                        <div>
+                            <p class="text-dark IRANSansWeb_Medium bottom_p">  {{item.namefull}}</p>
+                            <span class="IRANSansWeb_Medium text-dark"><i class="fas fa-clock"></i> {{item.tarikhenteshar}}</span>
+                        </div>
+                    </div>
+                </div>
+                  {% endfor %}
+            </a>
+            <a href="Blogdetails.html" class="card m-2">
+                <img class="card-img-top" src="{%static 'Images/topblog5.jpg' %}" alt="Card image">
+                <div class="card-body">
+                    <h6 class="IRANSansWeb_Medium">لورم ایپسوم متن ساختگی</h6>
+                    <p> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و گرافیک است .  </p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex flex-row">
+                        <img src="{%static 'Images/12.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                        <div>
+                            <p class="text-dark IRANSansWeb_Medium bottom_p">مجتبی مرادی</p>
+                            <span class="IRANSansWeb_Medium text-dark"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="Blogdetails.html" class="card m-2">
+                <img class="card-img-top" src="{%static 'Images/topblog6.jpg' %}" alt="Card image">
+                <div class="card-body">
+                    <h6 class="IRANSansWeb_Medium">تولید سادگی نامفهوم از صنعت چاپ</h6>
+                    <p> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و گرافیک است .  </p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex flex-row">
+                        <img src="{%static 'Images/11.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                        <div>
+                            <p class="text-dark IRANSansWeb_Medium bottom_p"> سیما محمدی</p>
+                            <span class="IRANSansWeb_Medium text-dark"><i class="fas fa-clock"></i> 98/5/9</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="Blogdetails.html" class="card m-2">
+                <img class="card-img-top" src="{%static 'Images/topblog8.jpg' %}" alt="Card image">
+                <div class="card-body">
+                    <h6 class="IRANSansWeb_Medium">لورم ایپسوم متن ساختگی</h6>
+                    <p> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و گرافیک است .  </p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex flex-row">
+                        <img src="{%static 'Images/12.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                        <div>
+                            <p class="text-dark IRANSansWeb_Medium bottom_p">مجتبی مرادی</p>
+                            <span class="IRANSansWeb_Medium text-dark"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="Blogdetails.html" class="card m-2">
+                <img class="card-img-top" src="{%static 'Images/topblog4.jpg' %}" alt="Card image">
+                <div class="card-body">
+                    <h6 class="IRANSansWeb_Medium">تولید سادگی نامفهوم از صنعت چاپ</h6>
+                    <p> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و گرافیک است .  </p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex flex-row">
+                        <img src="{%static 'Images/11.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                        <div>
+                            <p class="text-dark IRANSansWeb_Medium bottom_p"> سیما محمدی</p>
+                            <span class="IRANSansWeb_Medium text-dark"><i class="fas fa-clock"></i> 98/5/9</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="Blogdetails.html" class="card m-2">
+                <img class="card-img-top" src="{%static 'Images/topblog5.jpg' %}" alt="Card image">
+                <div class="card-body">
+                    <h6 class="IRANSansWeb_Medium">لورم ایپسوم متن ساختگی</h6>
+                    <p> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و گرافیک است .  </p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex flex-row">
+                        <img src="{%static 'Images/12.jpg' %}" class="img-fluid rounded-circle ml-3 pic55" />
+
+                        <div>
+                            <p class="text-dark IRANSansWeb_Medium bottom_p">مجتبی مرادی</p>
+                            <span class="IRANSansWeb_Medium text-dark"><i class="fas fa-ticket-alt"></i> 98/5/9</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section id="bloglist" class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 blogpost">
+                <h5 class="IRANSansWeb_Medium pb-2 text-center">پـادکست ها</h5>
+                <ul class="box pt-3">
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog4.jpg' %}" class="img-fluid rounded " style="" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-microphone-alt fa-2x text-danger ml-2"></i>لورم ایپسوم متن ساختگی با تولید سادگی </h3>                                <span class="float-right gray11">دکتر مجتبی عاملی</span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i>دو سال پیش</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog5.jpg' %}" class="img-fluid rounded" style="" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                           
+                                    <sound class="card-img-top" src="{{ item.file.url }}">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-microphone-alt fa-2x text-danger ml-2"></i>      {{item.title}} </h3>
+                                <span class="float-right gray11">  {{item.namefull}}</span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i> {{item.tarikhenteshar}} </span>
+                            </a>
+                        </div>
+                    </li>
+                
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog5.jpg' %}" class="img-fluid rounded" style="" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-microphone-alt fa-2x text-danger ml-2"></i>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
+                                <span class="float-right gray11"> مجتبی عاملی</span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i>دو سال پیش</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="border-bottom-0">
+                        <a href="/list_padcast" class="text-danger IRANSansWeb_Medium px-4">بیشتر ..</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-md-4 blogpost">
+                <h5 class="IRANSansWeb_Medium pb-2 text-center">ویدئوها</h5>
+                <ul class="box pt-3">
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog8.jpg' %}" class="img-fluid rounded" style="" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                             <vidio class="card-img-top" src="{{ item.vidio.url }}">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-video fa-2x text-danger ml-2"></i> {{item.title}}  </h3>
+                                <span class="float-right gray11"> {{item.namefull}} </span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i>  {{item.zaman_bargozary}}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog4.jpg' %}" class="img-fluid rounded" style="" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-video  fa-2x text-danger ml-2"></i>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
+                                <span class="float-right gray11"> مجتبی عاملی</span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i>دو سال پیش</span>
+                            </a>
+                        </div>
+                    </li>
+       
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog7.jpg' %}" class="img-fluid rounded" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-video fa-2x text-danger ml-2"></i>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
+                                <span class="float-right gray11"> مجتبی عاملی</span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i>دو سال پیش</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="border-bottom-0">
+                        <a href="/list_vidio" class="text-danger IRANSansWeb_Medium px-4">بیشتر ..</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 blogpost">
+                <h5 class="IRANSansWeb_Medium pb-2 text-center">نویسندگان</h5>
+                <ul class="box pt-3">
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog7.jpg' %}" class="img-fluid rounded" style="" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-file-alt fa-2x text-danger ml-2"></i>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
+                                <span class="float-right gray11"> مجتبی عاملی</span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i>دو سال پیش</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog6.jpg' %}" class="img-fluid rounded" style="" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-file-alt fa-2x text-danger ml-2"></i>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
+                                <span class="float-right gray11"> مجتبی عاملی</span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i>دو سال پیش</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="px-3 d-flex flex-row">
+                            <a href="#" class="bg-red rounded">
+                                <img src="{%static 'Images/topblog6.jpg' %}" class="img-fluid rounded" style="" />
+                            </a>
+                            <a href="#" class="pr-3 flex-fill">
+                                <h3 class="IRANSansWeb_Medium blog-item-title"><i class="fas fa-file-alt fa-2x text-danger ml-2"></i>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
+                                <span class="float-right gray11"> مجتبی عاملی</span>
+                                <span class="float-left gray11"><i class="fas fa-clock ml-1"></i>دو سال پیش</span>
+                            </a>
+                        </div>
+                    </li>
+               <li  class="border-bottom-0">
+                   <a href="/Blogdetails" class="text-danger IRANSansWeb_Medium px-4">بیشتر ..</a>
+               </li>
+                 </ul>
+              
+            </div>
+        </div>
+    </section>
+
+
+
+   
+
+
+
+</body>
+{% endblock %}
+
+{% block script %}
+
+{{ form.media }}
+   <script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}

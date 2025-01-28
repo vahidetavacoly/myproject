@@ -1,0 +1,134 @@
+[1mdiff --git a/db.sqlite3 b/db.sqlite3[m
+[1mindex 3652ca2..29e42e8 100644[m
+Binary files a/db.sqlite3 and b/db.sqlite3 differ
+[1mdiff --git a/myproject/__pycache__/settings.cpython-312.pyc b/myproject/__pycache__/settings.cpython-312.pyc[m
+[1mindex 010f97f..57deb64 100644[m
+Binary files a/myproject/__pycache__/settings.cpython-312.pyc and b/myproject/__pycache__/settings.cpython-312.pyc differ
+[1mdiff --git a/rezerv/static/Css/chat.css b/rezerv/static/Css/chat.css[m
+[1mindex 1e5633f..83997f4 100644[m
+[1m--- a/rezerv/static/Css/chat.css[m
+[1m+++ b/rezerv/static/Css/chat.css[m
+[36m@@ -257,3 +257,4 @@[m [mbody, html {[m
+ [m
+ [m
+ [m
+[41m+[m
+[1mdiff --git a/rezerv/templates/consultant_appointments.html b/rezerv/templates/consultant_appointments.html[m
+[1mindex 360f176..c294075 100644[m
+[1m--- a/rezerv/templates/consultant_appointments.html[m
+[1m+++ b/rezerv/templates/consultant_appointments.html[m
+[36m@@ -19,11 +19,11 @@[m
+ [m
+ <head>[m
+     <meta name="csrf-token" content="{{ csrf_token }}">[m
+[31m-    </head>[m
+[32m+[m[32m</head>[m
+ [m
+ {% block body %}[m
+ {% include "navbar2.html"%}[m
+[31m-<link href="{% static 'Css/chat.css' %}" rel="stylesheet" />[m
+[32m+[m[32m<link href="{% static 'Css/list.css' %}" rel="stylesheet" />[m
+ <body id="online">[m
+ [m
+ <section class="container mt-5">[m
+[36m@@ -47,37 +47,35 @@[m
+                                 </div>[m
+                                 <div class="wizard-body">[m
+                                     <div class="table-responsive">[m
+[31m-                                       [m
+[31m-        <table>[m
+[31m-            <thead>[m
+[31m-                <tr>[m
+[31m-                    <th>تاریخ</th>[m
+[31m-                    <th>زمان</th>[m
+[31m-                    <th>نوع نوبت</th>[m
+[31m-                    <th>نام کاربر</th>[m
+[31m-                    <th>وضعیت</th>[m
+[31m-                    <th>عملیات</th>[m
+[31m-                </tr>[m
+[31m-            </thead>[m
+[31m-            <tbody>[m
+[31m-                {% for item in appointments %}[m
+[31m-                <tr>[m
+[31m-                    <td>{{ item.date }}</td>[m
+[31m-                    <td>{{ item.time }}</td>[m
+[31m-                    <td>{{ item.type }}</td>[m
+[31m-                    <td>{{ item.user.username }}</td>[m
+[31m-                    <td>{{ item.status }}</td>[m
+[31m-                   [m
+[31m-                    <td>[m
+[31m-                        <form method="post" action="{% url 'start_meeting' item.id %}">[m
+[31m-                            {% csrf_token %}[m
+[31m-                            <button type="submit" class="btn">شروع جلسه</button>[m
+[31m-                        </form>[m
+[31m-                    </td>[m
+[31m-                </tr>[m
+[31m-                {% endfor %}[m
+[31m-            </tbody>[m
+[31m-        </table>[m
+[32m+[m[32m                                        <table>[m
+[32m+[m[32m                                            <thead>[m
+[32m+[m[32m                                                <tr>[m
+[32m+[m[32m                                                    <th>تاریخ</th>[m
+[32m+[m[32m                                                    <th>زمان</th>[m
+[32m+[m[32m                                                    <th>نوع نوبت</th>[m
+[32m+[m[32m                                                    <th>نام کاربر</th>[m
+[32m+[m[32m                                                    <th>وضعیت</th>[m
+[32m+[m[32m                                                    <th>عملیات</th>[m
+[32m+[m[32m                                                </tr>[m
+[32m+[m[32m                                            </thead>[m
+[32m+[m[32m                                            <tbody>[m
+[32m+[m[32m                                                {% for item in appointments %}[m
+[32m+[m[32m                                                <tr>[m
+[32m+[m[32m                                                    <td>{{ item.date }}</td>[m
+[32m+[m[32m                                                    <td>{{ item.time }}</td>[m
+[32m+[m[32m                                                    <td>{{ item.type }}</td>[m
+[32m+[m[32m                                                    <td>{{ item.user.username }}</td>[m
+[32m+[m[32m                                                    <td>{{ item.status }}</td>[m
+[32m+[m[32m                                                    <td>[m
+[32m+[m[32m                                                        <form method="post" action="{% url 'start_meeting' item.id %}">[m
+[32m+[m[32m                                                            {% csrf_token %}[m
+[32m+[m[32m                                                            <button type="submit" class="btn">شروع جلسه</button>[m
+[32m+[m[32m                                                        </form>[m
+[32m+[m[32m                                                    </td>[m
+[32m+[m[32m                                                </tr>[m
+[32m+[m[32m                                                {% endfor %}[m
+[32m+[m[32m                                            </tbody>[m
+[32m+[m[32m                                        </table>[m
+                                     </div>[m
+                                 </div>[m
+                             </form>[m
+[36m@@ -95,27 +93,3 @@[m
+     {{ form.media }}[m
+     <script src="{% static 'js/chat.js' %}"></script>[m
+ {% endblock %}[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[1mdiff --git a/vahide b/vahide[m
+[1m--- a/vahide[m
+[1m+++ b/vahide[m
+[36m@@ -1 +1 @@[m
+[31m-Subproject commit b2fb0b8801d9164bc7d3d2a1216b1b49cc257617[m
+[32m+[m[32mSubproject commit b2fb0b8801d9164bc7d3d2a1216b1b49cc257617-dirty[m

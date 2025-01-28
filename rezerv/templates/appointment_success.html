@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-dager" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+    {% endif %}
+{% endblock %}
+
+<head>
+<meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+
+{% block body %}
+{% include "navbar2.html"%}
+<link href="{% static 'Css/chat.css' %}" rel="stylesheet" />
+<body id="online">
+   
+
+    <section class="container mt-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div>
+                    <div class="my-2 box grad-bg p-4">
+                        <div class="row rounded text-sm-right text-center pt-3">
+                            <div class="col-lg-4 col-sm-3">
+                               
+                            </div>
+                            <div class="col-lg-8 col-sm-9 pr-3">
+                                <div id="bio" class="text-white">
+                                    <h5 class="IRANSansWeb_Medium bt-color">
+                                        <div class="profile-info">
+                                            <h3>مشخصات پزشک</h3>
+                                            <p><strong>نام پزشک:</strong> {{ consultant.namefull }}</p>
+                                            <p><strong>تخصص:</strong> {{ consultant.typetakhasos }}</p>
+                                            <p><strong>تلفن:</strong> {{ consultant.tell }}</p>
+                                        </div>
+                                    </h5>
+                                    <p class="">
+                                        <div class="user-info">
+                                            <h3>مشخصات کاربر</h3>
+                                            <p><strong>نام کاربری:</strong> {{ user.username }}</p>
+                                            <p><strong>ایمیل:</strong> {{ user.email }}</p>
+                                        </div>
+                                    </p>
+                                    <span>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                    </span>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="m-2 box p-4">
+                        <h6 class="IRANSansWeb_Medium bt-color bg-light py-2 px-3 mb-4 rad25">شبکه های اجتماعی</h6>
+                        <a href="#" target="_blank">
+                            <img class="socialsize" src="{%static 'Images/Svg/telegram.png'%}" alt="">
+                        </a>
+                        <a href="#" target="_blank">
+                            <img class="socialsize" src="{%static 'Images/Svg/Instagram.png'%}" alt="">
+                        </a>
+                        <a href="#" target="_blank">
+                            <img class="socialsize" src="{%static 'Images/Svg/whatsapp-tile.svg'%}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="box p-md-4 p-2">
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="wizard card-like  m-3">
+                                <form action="#">
+                                    <div class="wizard-header">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                <h5 class="IRANSansWeb_Medium mb-1">
+                                                    <div class="content-wrapper">
+                                                        <div class="container text-center mt-5">
+    <h2 class="text-success">رزرو شما با موفقیت ثبت شد!</h2>
+    <p>مشاور: {{ consultant.namefull }}</p>
+    <p>تاریخ: {{ appointment.date }}</p>
+    <p>ساعت: {{ appointment.time }}</p>
+    <a href="/indexk" class="btn btn-primary mt-3">بازگشت به صفحه اصلی</a>
+</div>
+
+                                                       
+                                                    </div>
+                                                </h5>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wizard-footer">
+                                        <div class="row">
+                                            <div class="col-sm-6  text-sm-right text-center mb-2"></div>
+                                            <div class="col-sm-6 text-sm-left text-center mb-2"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+    {{ form.media }}
+    <script src="{% static 'js/chat.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

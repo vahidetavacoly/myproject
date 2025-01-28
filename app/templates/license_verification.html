@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+پنل کاربری
+{{ user_st.user }}
+
+{% endblock %}
+
+{% block user %}
+    {% if user_st.state == True %}
+    شما با نام کاربری
+    {{ user_st.user }}
+    در سایت هستید
+    <a class="btn-btn-dager" href="/autoapp/logouts "> خروج </a>
+    {% endif %}
+    {% if user_st.state == False %}
+    وارد حساب خود شوید
+
+    {% endif %}
+
+
+{% endblock %}
+{% block body %}
+{% include "navbark.html"%}
+
+
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1>ورود کد لایسنس</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="license_code">کد لایسنس</label>
+                    <input type="text" id="license_code" name="license_code" placeholder="لطفاً کد لایسنس را وارد کنید" required>
+                </div>
+                <button type="submit" class="btn btn-success text-white rad25">تایید</button>
+            </form>
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+{% endblock %}
+{% block script %}
+
+{{ form.media }}
+   <script src="{% static 'js/script_panels.js' %}"></script>
+{% endblock %}
